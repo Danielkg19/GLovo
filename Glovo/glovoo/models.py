@@ -7,7 +7,7 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 
 class UserProfile(AbstractUser):
     phone_number = PhoneNumberField(null=True,blank=True, region='KG')
-    ROLES_CHOICES =(
+    ROLES_CHOICES = (
         ('клиент', 'клиент'),
         ('курьер', 'курьер'),
         ('владелец', 'владелец')

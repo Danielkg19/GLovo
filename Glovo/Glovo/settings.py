@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'glovoo',
     'phonenumber_field',
     'django_filters',
+    'rest_framework_simplejwt',
 
 ]
 
@@ -128,6 +129,8 @@ MODELTRANSLATION_LANGUAGES = ('en', 'ru')
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles/')
+STATIC_ROOT = BASE_DIR / 'staticfiles/'
 
 LANGUAGES = (
     ('en', 'English'),
@@ -142,6 +145,7 @@ LANGUAGES = (
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
 
 AUTH_USER_MODEL = 'glovoo.UserProfile'
 
@@ -162,4 +166,18 @@ SIMPLE_JWT = {
 
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
-    'PAGE_SIZE': 10}
+    'PAGE_SIZE': 10,
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+
+
+    )}
+
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=5),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
+    "ROTATE_REFRESH_TOKENS": False,
+    "BLACKLIST_AFTER_ROTATION": False,
+    "AUTH_HEADER_TYPES": ("Bearer",),
+}
